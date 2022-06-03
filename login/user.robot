@@ -8,19 +8,19 @@ Test Teardown     Close Session
 
 *** Variables ***
 ${url}            https://www.saucedemo.com/                
+${username}       css:#user-name       
+${password}       css:#password        
 
 
 *** Test Cases ***
 access to web page
-
     Title Should Be     Swag Labs   
     Sleep               5
     
 access username and password
     [Tags]                  usersucess
- 
-    Input Text              css:#user-name       standard_user
-    Input Text              css:#password        secret_sauce
+    Input Text              ${username}        standard_user
+    Input Text              ${password}        secret_sauce
     Click Element           css:#login-button
     
     Should Be Title Case    Swag Labs
@@ -29,8 +29,8 @@ access username and password
 access username and password plus choice combobox
     [Tags]                          combobox
   
-    Input Text                      css:#user-name       standard_user
-    Input Text                      css:#password        secret_sauce
+    Input Text                      ${username}        standard_user
+    Input Text                      ${password}        secret_sauce
     Click Element                   css:#login-button
     Should Be Title Case            Swag Labs  
     
@@ -43,8 +43,8 @@ access username and password plus choice combobox
 access username and password plus choice combobox and logout
     [Tags]                          logout
   
-    Input Text                      css:#user-name       standard_user
-    Input Text                      css:#password        secret_sauce
+    Input Text                      ${username}        standard_user
+    Input Text                      ${password}        secret_sauce
     Click Element                   css:#login-button
     Should Be Title Case            Swag Labs  
     
@@ -53,8 +53,8 @@ access username and password plus choice combobox and logout
     Should Be Equal                 ${select}                           lohi
     Sleep                           5
 
-    Click Element                          css:#react-burger-menu-btn       
-    Get Element Attribute                  xpath://*[@id="menu_button_container"]/div/div[2]/div[1]/nav    Logout
+    Click Element                   css:#react-burger-menu-btn       
+    Get Element Attribute           xpath://*[@id="menu_button_container"]/div/div[2]/div[1]/nav    Logout
 
 
 *** Keywords ***
